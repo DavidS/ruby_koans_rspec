@@ -5,10 +5,10 @@ describe 'Exceptions' do
   end
 
   it 'should demonstrate exceptions_inherit_from_Exception' do
-    MySpecialError.ancestors[1].should eql __
-    MySpecialError.ancestors[2].should eql __
-    MySpecialError.ancestors[3].should eql __
-    MySpecialError.ancestors[4].should eql __
+    expect(MySpecialError.ancestors[1]).to eql __
+    expect(MySpecialError.ancestors[2]).to eql __
+    expect(MySpecialError.ancestors[3]).to eql __
+    expect(MySpecialError.ancestors[4]).to eql __
   end
 
   it 'should demonstrate rescue_clause' do
@@ -19,15 +19,15 @@ describe 'Exceptions' do
       result = :exception_handled
     end
 
-    result.should eql __
+    expect(result).to eql __
 
-    ex.is_a?(StandardError).should eql(__), 'Should be a Standard Error'
-    ex.is_a?(RuntimeError).should eql(__), 'Should be a Runtime Error'
+    expect(ex.is_a?(StandardError)).to eql(__), 'Should be a Standard Error'
+    expect(ex.is_a?(RuntimeError)).to eql(__), 'Should be a Runtime Error'
 
-    expect(RuntimeError.ancestors.include?(StandardError)).to be_true,
+    expect(RuntimeError.ancestors.include?(StandardError)).to be_truthy,
                                                               'RuntimeError is a subclass of StandardError'
 
-    ex.message.should eql __
+    expect(ex.message).to eql __
   end
 
   it 'should demonstrate raising_a_particular_error' do
@@ -39,8 +39,8 @@ describe 'Exceptions' do
       result = :exception_handled
     end
 
-    result.should eql __
-    ex.message.should eql __
+    expect(result).to eql __
+    expect(ex.message).to eql __
   end
 
   it 'should demonstrate ensure_clause' do
@@ -53,7 +53,7 @@ describe 'Exceptions' do
       result = :always_run
     end
 
-    result.should eql __
+    expect(result).to eql __
   end
 
   # Sometimes, we must know about the unknown
