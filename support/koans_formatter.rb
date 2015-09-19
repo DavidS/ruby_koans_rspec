@@ -1,6 +1,8 @@
-require "rspec/core/formatters/base_formatter"
+require "rspec/core/formatters/base_text_formatter"
+require "rspec/core/formatters/console_codes"
 
-class KoansFormatter < RSpec::Core::Formatters::BaseFormatter
+class KoansFormatter < RSpec::Core::Formatters::BaseTextFormatter
+  include RSpec::Core::Formatters::ConsoleCodes
 
   PROGRESS_FILE_NAME = '.path_progress'
 
@@ -13,7 +15,7 @@ class KoansFormatter < RSpec::Core::Formatters::BaseFormatter
   def example_passed(example)
     @passed_count += 1
     if @passed_count > progress.last.to_i
-      @observations << green("About#{example.example_group.description}\##{example.description} has expanded your awareness")
+      @observations << green("About#{example_group.description}\##{example.description} has expanded your awareness")
     end
   end
 
@@ -21,16 +23,15 @@ class KoansFormatter < RSpec::Core::Formatters::BaseFormatter
     unless failed?
       @failure = example.exception
       add_progress(@passed_count)
-      @observations << red("About#{example.example_group.description}\##{example.description} has damaged your karma.")
+      @observations << red("About#{example_group.description}\##{example.description} has damaged your karma.")
     end
-    exit
   end
 
   def format_backtrace(backtrace, example)
     super(backtrace, example.metadata)
   end
 
-  def start_dump
+  def start_dump(_)
     if failed?
       @observations.each { |c| puts c }
       encourage
@@ -203,28 +204,24 @@ class KoansFormatter < RSpec::Core::Formatters::BaseFormatter
 
   protected
 
-  def color(text, color_code)
-    color_enabled? ? "#{color_code}#{text}\e[0m" : text
-  end
-
   def red(text)
-    color(text, "\e[31m")
+    wrap(text, :red)
   end
 
   def green(text)
-    color(text, "\e[32m")
+    wrap(text, :green)
   end
 
   def cyan(text)
-    color(text, "\e[36m")
+    wrap(text, :cyan)
   end
 
   def blue(text)
-    color(text, "\e[34m")
+    wrap(text, :blue)
   end
 
   def magenta(text)
-    color(text, "\e[35m")
+    wrap(text, :magenta)
   end
 
 end
@@ -242,4 +239,5 @@ class String
   end
 end
 
+RSpec::Core::Formatters.register KoansFormatter, :example_passed, :example_failed, :start_dump
 
