@@ -1,7 +1,7 @@
-require 'rspec/core/formatters/base_text_formatter'
+require 'rspec/core/formatters/base_formatter'
 require 'rspec/core/formatters/console_codes'
 
-class KoansFormatter < RSpec::Core::Formatters::BaseTextFormatter
+class KoansFormatter < RSpec::Core::Formatters::BaseFormatter
   include RSpec::Core::Formatters::ConsoleCodes
 
   PROGRESS_FILE_NAME = '.path_progress'
@@ -12,18 +12,18 @@ class KoansFormatter < RSpec::Core::Formatters::BaseTextFormatter
     @observations = []
   end
 
-  def example_passed(example)
+  def example_passed(data)
     @passed_count += 1
     if @passed_count > progress.last.to_i
-      @observations << green("About#{example_group.description}\##{example.description} has expanded your awareness")
+      @observations << green("About#{example_group.description}\##{data.example.description} has expanded your awareness")
     end
   end
 
-  def example_failed(example)
+  def example_failed(data)
     unless failed?
-      @failure = example.exception
+      @failure = data.exception
       add_progress(@passed_count)
-      @observations << red("About#{example_group.description}\##{example.description} has damaged your karma.")
+      @observations << red("About#{example_group.description}\##{data.example.description} has damaged your karma.")
     end
   end
 
@@ -156,7 +156,7 @@ class KoansFormatter < RSpec::Core::Formatters::BaseTextFormatter
 
   def find_interesting_lines(backtrace)
     backtrace.reject do |line|
-      line =~ /rspec-expectations|rspec-core|bin/
+      line =~ /rspec-expectations|rspec-core|rspec-support|bin/
     end
   end
 
