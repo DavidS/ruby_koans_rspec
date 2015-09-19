@@ -10,7 +10,7 @@ describe 'Matchers' do
   end
 
   it 'should allow matching with built in matchers and a message' do
-    expect(true).not_to be_true, 'This should be false -- Please fix this'
+    expect(true).not_to be_true, 'This should be falsey -- Please fix this'
   end
 
   it 'should allow matching of variables' do

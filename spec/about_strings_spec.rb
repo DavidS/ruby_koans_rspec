@@ -1,33 +1,33 @@
 require 'spec_helper'
 
 describe 'Strings' do
-  it 'should demonstrate double_quoted_strings_are_strings' do
+  it 'should demonstrate double quoted strings are strings' do
     string = 'Hello, World'
     expect(string.is_a?(String)).to eql __
   end
 
-  it 'should demonstrate single_quoted_strings_are_also_strings' do
+  it 'should demonstrate single quoted strings are also strings' do
     string = 'Goodbye, World'
     expect(string.is_a?(String)).to eql __
   end
 
-  it 'should demonstrate use_single_quotes_to_create_string_with_double_quotes' do
+  it 'should demonstrate use single quotes_to_create_string_with_double_quotes' do
     string = 'He said, "Go Away."'
     expect(string).to eql __
   end
 
-  it 'should demonstrate use_double_quotes_to_create_strings_with_single_quotes' do
+  it 'should demonstrate use double quotes to create strings with single quotes' do
     string = "Don't"
     expect(string).to eql __
   end
 
-  it 'should demonstrate use_backslash_for_those_hard_cases' do
+  it 'should demonstrate use backslash for those hard cases' do
     a = "He said, \"Don't\""
     b = 'He said, "Don\'t"'
     expect(a == b).to eql __
   end
 
-  it 'should demonstrate use_flexible_quoting_to_handle_really_hard_cases' do
+  it 'should demonstrate use flexible quoting to handle really hard cases' do
     a = %(flexible quotes can handle both ' and " characters)
     b = %!flexible quotes can handle both ' and " characters!
     c = %{flexible quotes can handle both ' and " characters}
@@ -35,7 +35,7 @@ describe 'Strings' do
     expect(a == c).to eql __
   end
 
-  it 'should demonstrate flexible_quotes_can_handle_multiple_lines' do
+  it 'should demonstrate flexible quotes can handle multiple lines' do
     long_string = %{
 It was the best of times,
 It was the worst of times.
@@ -44,7 +44,7 @@ It was the worst of times.
     expect(long_string.lines.count).to eql __
   end
 
-  it 'should demonstrate here_documents_can_also_handle_multiple_lines' do
+  it 'should demonstrate here documents can also handle multiple lines' do
     long_string = <<EOS
 It was the best of times,
 It was the worst of times.
@@ -53,12 +53,12 @@ EOS
     expect(long_string.lines.count).to eql __
   end
 
-  it 'should demonstrate plus_will_concatenate_two_strings' do
+  it 'should demonstrate plus will concatenate two strings' do
     string = 'Hello, ' + 'World'
     expect(string).to eql __
   end
 
-  it 'should demonstrate plus_concatenation_will_leave_the_original_strings_unmodified' do
+  it 'should demonstrate plus concatenation will leave the original strings unmodified' do
     hi = 'Hello, '
     there = 'World'
     string = hi + there
@@ -66,14 +66,14 @@ EOS
     expect(there).to eql __
   end
 
-  it 'should demonstrate plus_equals_will_concatenate_to_the_end_of_a_string' do
+  it 'should demonstrate plus equals will concatenate to the end of a string' do
     hi = 'Hello, '
     there = 'World'
     hi += there
     expect(hi).to eql __
   end
 
-  it 'should demonstrate plus_equals_also_will_leave_the_original_string_unmodified' do
+  it 'should demonstrate plus equals also will leave the original string unmodified' do
     original_string = 'Hello, '
     hi = original_string
     there = 'World'
@@ -81,7 +81,7 @@ EOS
     expect(original_string).to eql __
   end
 
-  it 'should demonstrate the_shovel_operator_will_also_append_content_to_a_string' do
+  it 'should demonstrate the shovel operator will also append content to a string' do
     hi = 'Hello, '
     there = 'World'
     hi << there
@@ -89,7 +89,7 @@ EOS
     expect(there).to eql __
   end
 
-  it 'should demonstrate the_shovel_operator_modifies_the_original_string' do
+  it 'should demonstrate the shovel operator modifies the original string' do
     original_string = 'Hello, '
     hi = original_string
     there = 'World'
@@ -102,64 +102,64 @@ EOS
     # plus equals operator (+=) when building up strings.  Why?
   end
 
-  it 'should demonstrate double_quoted_string_interpret_escape_characters' do
+  it 'should demonstrate double quoted string interpret escape characters' do
     string = "\n"
     expect(string.size).to eql __
   end
 
-  it 'should demonstrate single_quoted_string_do_not_interpret_escape_characters' do
+  it 'should demonstrate single quoted string do not interpret escape characters' do
     string = '\n'
     expect(string.size).to eql __
   end
 
-  it 'should demonstrate single_quotes_sometimes_interpret_escape_characters' do
+  it 'should demonstrate single quotes sometimes interpret escape characters' do
     string = '\\\''
     expect(string.size).to eql __
     expect(string).to eql __
   end
 
-  it 'should demonstrate double_quoted_strings_interpolate_variables' do
+  it 'should demonstrate double quoted strings interpolate variables' do
     value = 123
     string = "The value is #{value}"
     expect(string).to eql __
   end
 
-  it 'should demonstrate single_quoted_strings_do_not_interpolate' do
+  it 'should demonstrate single quoted strings do not interpolate' do
     value = 123
     string = 'The value is #{value}'
     expect(string).to eql __
   end
 
-  it 'should demonstrate any_ruby_expression_may_be_interpolated' do
+  it 'should demonstrate any ruby expression may be interpolated' do
     string = "The square root of 5 is #{Math.sqrt(5)}"
     expect(string).to eql __
   end
 
-  it 'should demonstrate you_can_get_a_substring_from_a_string' do
+  it 'should demonstrate you can get a substring from a string' do
     string = 'Bacon, lettuce and tomato'
     expect(string[7, 3]).to eql __
     expect(string[7..9]).to eql __
   end
 
-  it 'should demonstrate you_can_get_a_single_character_from_a_string' do
+  it 'should demonstrate you can get a single character from a string' do
     string = 'Bacon, lettuce and tomato'
     expect(string[1]).to eql __
 
     # Surprised?
   end
 
-  it 'should demonstrate in_ruby_1_9_single_characters_are_represented_by_strings' do
+  it 'should demonstrate in ruby 1.9 single characters are represented by strings' do
     expect(?a).to eql __
     expect(?a == 97).to eql __
   end
 
-  it 'should demonstrate strings_can_be_split' do
+  it 'should demonstrate strings can be split' do
     string = 'Sausage Egg Cheese'
     words = string.split
     expect(words).to eql [__, __, __, __]
   end
 
-  it 'should demonstrate strings_can_be_split_with_different_patterns' do
+  it 'should demonstrate strings can be split with different patterns' do
     string = 'the:rain:in:spain'
     words = string.split(/:/)
     expect(words).to eql [__, __, __, __]
@@ -169,12 +169,12 @@ EOS
     # enlightened about them soon.
   end
 
-  it 'should demonstrate strings_can_be_joined' do
+  it 'should demonstrate strings can be joined' do
     words = ['Now', 'is', 'the', 'time']
     expect(words.join(' ')).to eql __
   end
 
-  it 'should demonstrate strings_are_unique_objects' do
+  it 'should demonstrate strings are unique objects' do
     a = 'a string'
     b = 'a string'
 
