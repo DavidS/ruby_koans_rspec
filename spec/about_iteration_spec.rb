@@ -1,20 +1,19 @@
 require 'spec_helper'
 
-describe "Iteration" do
-
+describe 'Iteration' do
   # -- An Aside ------------------------------------------------------
   # Ruby 1.8 stores names as strings. Ruby 1.9 stores names as
   # symbols. So we use a version dependent method "as_name" to convert
   # to the right format in the koans.  We will use "as_name" whenever
   # comparing to lists of methods.
 
-  in_ruby_version("1.8") do
+  in_ruby_version('1.8') do
     def as_name(name)
       name.to_s
     end
   end
 
-  in_ruby_version("1.9") do
+  in_ruby_version('1.9') do
     def as_name(name)
       name.to_sym
     end
@@ -23,11 +22,11 @@ describe "Iteration" do
   # Ok, now back to the Koans.
   # -------------------------------------------------------------------
 
-  it "should demonstrate each_is_a_method_on_arrays" do
+  it 'should demonstrate each_is_a_method_on_arrays' do
     [].methods.include?(as_name(:each)).should eql __
   end
 
-  it "should demonstrate iterating_with_each" do
+  it 'should demonstrate iterating_with_each' do
     array = [1, 2, 3]
     sum = 0
     array.each do |item|
@@ -36,7 +35,7 @@ describe "Iteration" do
     sum.should eql __
   end
 
-  it "should demonstrate each_can_use_curly_brace_blocks_too" do
+  it 'should demonstrate each_can_use_curly_brace_blocks_too' do
     array = [1, 2, 3]
     sum = 0
     array.each { |item|
@@ -45,7 +44,7 @@ describe "Iteration" do
     sum.should eql __
   end
 
-  it "should demonstrate break_works_with_each_style_iterations" do
+  it 'should demonstrate break_works_with_each_style_iterations' do
     array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
     sum = 0
     array.each { |item|
@@ -55,7 +54,7 @@ describe "Iteration" do
     sum.should eql __
   end
 
-  it "should demonstrate collect_transforms_elements_of_an_array" do
+  it 'should demonstrate collect_transforms_elements_of_an_array' do
     array = [1, 2, 3]
     new_array = array.collect { |item| item + 10 }
     new_array.should eql __
@@ -65,7 +64,7 @@ describe "Iteration" do
     another_array.should eql __
   end
 
-  it "should demonstrate select_selects_certain_items_from_an_array" do
+  it 'should demonstrate select_selects_certain_items_from_an_array' do
     array = [1, 2, 3, 4, 5, 6]
 
     even_numbers = array.select { |item| (item % 2) == 0 }
@@ -76,13 +75,13 @@ describe "Iteration" do
     more_even_numbers.should eql __
   end
 
-  it "should demonstrate find_locates_the_first_element_matching_a_criteria" do
-    array = ["Jim", "Bill", "Clarence", "Doug", "Eli"]
+  it 'should demonstrate find_locates_the_first_element_matching_a_criteria' do
+    array = ['Jim', 'Bill', 'Clarence', 'Doug', 'Eli']
 
     array.find { |item| item.size > 4 }.should eql __
   end
 
-  it "should demonstrate inject_will_blow_your_mind" do
+  it 'should demonstrate inject_will_blow_your_mind' do
     result = [2, 3, 4].inject(0) { |sum, item| sum + item }
     result.should eql __
 
@@ -93,13 +92,13 @@ describe "Iteration" do
     # Describe in your own words what inject does.
   end
 
-  it "should demonstrate all_iteration_methods_work_on_any_collection_not_just_arrays" do
+  it 'should demonstrate all_iteration_methods_work_on_any_collection_not_just_arrays' do
     # Ranges act like a collection
     result = (1..3).map { |item| item + 10 }
     result.should eql __
 
     # Files act like a collection of lines
-    File.open("example_file.txt") do |file|
+    File.open('example_file.txt') do |file|
       upcase_lines = file.map { |line| line.strip.upcase }
       upcase_lines.should eql __
     end
@@ -120,5 +119,4 @@ describe "Iteration" do
   #   # code to read 'file'
   #
   # When you get to the "AboutSandwichCode" koan, recheck your answer.
-
 end

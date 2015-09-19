@@ -1,33 +1,32 @@
 require 'spec_helper'
 
-describe "Class Methods" do
-
+describe 'Class Methods' do
   class Dog
   end
 
-  it "should demonstrate objects_are_objects" do
+  it 'should demonstrate objects_are_objects' do
     fido = Dog.new
     fido.is_a?(Object).should eql __
   end
 
-  it "should demonstrate classes_are_classes" do
+  it 'should demonstrate classes_are_classes' do
     Dog.is_a?(Class).should eql __
   end
 
-  it "should demonstrate classes_are_objects_too" do
+  it 'should demonstrate classes_are_objects_too' do
     Dog.is_a?(Object).should eql __
   end
 
-  it "should demonstrate objects_have_methods" do
+  it 'should demonstrate objects_have_methods' do
     fido = Dog.new
     expect(fido.methods.size).to be > _n_
   end
 
-  it "should demonstrate classes_have_methods" do
+  it 'should demonstrate classes_have_methods' do
     expect(Dog.methods.size).to be > _n_
   end
 
-  it "should demonstrate you_can_define_methods_on_individual_objects" do
+  it 'should demonstrate you_can_define_methods_on_individual_objects' do
     fido = Dog.new
 
     def fido.wag
@@ -37,7 +36,7 @@ describe "Class Methods" do
     fido.wag.should eql __
   end
 
-  it "should demonstrate other_objects_are_not_affected_by_these_singleton_methods" do
+  it 'should demonstrate other_objects_are_not_affected_by_these_singleton_methods' do
     fido = Dog.new
     rover = Dog.new
 
@@ -60,11 +59,11 @@ describe "Class Methods" do
     :class_level_wag
   end
 
-  it "should demonstrate since_classes_are_objects_you_can_define_singleton_methods_on_them_too" do
+  it 'should demonstrate since_classes_are_objects_you_can_define_singleton_methods_on_them_too' do
     Dog2.wag.should eql __
   end
 
-  it "should demonstrate class_methods_are_independent_of_instance_methods" do
+  it 'should demonstrate class_methods_are_independent_of_instance_methods' do
     fido = Dog2.new
     fido.wag.should eql __
     Dog2.wag.should eql __
@@ -80,9 +79,9 @@ describe "Class Methods" do
     @name
   end
 
-  it "should demonstrate classes_and_instances_do_not_share_instance_variables" do
+  it 'should demonstrate classes_and_instances_do_not_share_instance_variables' do
     fido = Dog.new
-    fido.name = "Fido"
+    fido.name = 'Fido'
     fido.name.should eql __
     Dog.name.should eql __
   end
@@ -95,28 +94,27 @@ describe "Class Methods" do
     end
   end
 
-  it "should demonstrate you_can_define_class_methods_inside_the_class" do
+  it 'should demonstrate you_can_define_class_methods_inside_the_class' do
     Dog.a_class_method.should eql __
   end
-
 
   # ------------------------------------------------------------------
 
   LastExpressionInClassStatement = class Dog
-    21
+                                     21
   end
 
-  it "should demonstrate class_statements_return_the_value_of_their_last_expression" do
+  it 'should demonstrate class_statements_return_the_value_of_their_last_expression' do
     LastExpressionInClassStatement.should eql __
   end
 
   # ------------------------------------------------------------------
 
   SelfInsideOfClassStatement = class Dog
-    self
+                                 self
   end
 
-  it "should demonstrate self_while_inside_class_is_class_object_not_instance" do
+  it 'should demonstrate self_while_inside_class_is_class_object_not_instance' do
     (Dog == SelfInsideOfClassStatement).should eql __
   end
 
@@ -128,7 +126,7 @@ describe "Class Methods" do
     end
   end
 
-  it "should demonstrate you_can_use_self_instead_of_an_explicit_reference_to_dog" do
+  it 'should demonstrate you_can_use_self_instead_of_an_explicit_reference_to_dog' do
     Dog.class_method2.should eql __
   end
 
@@ -142,7 +140,7 @@ describe "Class Methods" do
     end
   end
 
-  it "should demonstrate heres_still_another_way_to_write_class_methods" do
+  it 'should demonstrate heres_still_another_way_to_write_class_methods' do
     Dog.another_class_method.should eql __
   end
 
@@ -164,7 +162,7 @@ describe "Class Methods" do
 
   # ------------------------------------------------------------------
 
-  it "should demonstrate heres_an_easy_way_to_call_class_methods_from_instance_methods" do
+  it 'should demonstrate heres_an_easy_way_to_call_class_methods_from_instance_methods' do
     fido = Dog.new
     fido.class.another_class_method.should eql __
   end

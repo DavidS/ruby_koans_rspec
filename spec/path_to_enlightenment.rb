@@ -25,4 +25,3 @@ require 'about_scope_spec'
 require 'about_class_methods_spec'
 require 'about_message_passing_spec'
 require 'about_to_str_spec'
-

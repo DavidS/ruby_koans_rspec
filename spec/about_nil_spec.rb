@@ -1,12 +1,11 @@
-require "spec_helper"
+require 'spec_helper'
 
-describe "Nil" do
-
-  it "should show that nil is an object" do
+describe 'Nil' do
+  it 'should show that nil is an object' do
     nil.is_a?(Object).should == __
   end
 
-  it "should not cause null pointer errors when calling methods on nil" do
+  it 'should not cause null pointer errors when calling methods on nil' do
     # What happens when you call a method that doesn't exist.  The
     # following begin/rescue/end code block captures the exception and
     # makes some assertions about it.
@@ -22,7 +21,7 @@ describe "Nil" do
     end
   end
 
-  it "should display methods nil has defined for it" do
+  it 'should display methods nil has defined for it' do
     nil.nil?.should eq __
     nil.to_s.should eq __
     nil.inspect.should eq __
@@ -35,5 +34,4 @@ describe "Nil" do
     #    obj == nil
     # Why?
   end
-
 end

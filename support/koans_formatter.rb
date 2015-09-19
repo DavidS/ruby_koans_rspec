@@ -1,5 +1,5 @@
-require "rspec/core/formatters/base_text_formatter"
-require "rspec/core/formatters/console_codes"
+require 'rspec/core/formatters/base_text_formatter'
+require 'rspec/core/formatters/console_codes'
 
 class KoansFormatter < RSpec::Core::Formatters::BaseTextFormatter
   include RSpec::Core::Formatters::ConsoleCodes
@@ -45,7 +45,7 @@ class KoansFormatter < RSpec::Core::Formatters::BaseTextFormatter
 
   def add_progress(prog)
     @_contents = nil
-    exists = File.exists?(PROGRESS_FILE_NAME)
+    exists = File.exist?(PROGRESS_FILE_NAME)
     File.open(PROGRESS_FILE_NAME, 'a+') do |f|
       f.print "#{',' if exists}#{prog}"
     end
@@ -53,7 +53,7 @@ class KoansFormatter < RSpec::Core::Formatters::BaseTextFormatter
 
   def progress
     if @_contents.nil?
-      if File.exists?(PROGRESS_FILE_NAME)
+      if File.exist?(PROGRESS_FILE_NAME)
         File.open(PROGRESS_FILE_NAME, 'r') do |f|
           @_contents = f.read.to_s.gsub(/\s/, '').split(',')
         end
@@ -74,12 +74,12 @@ class KoansFormatter < RSpec::Core::Formatters::BaseTextFormatter
 
   def encourage
     puts
-    puts "The Master says:"
-    puts cyan("  You have not yet reached enlightenment.")
-    if ((recents = progress.last(5)) && recents.size == 5 && recents.uniq.size == 1)
-      puts cyan("  I sense frustration. Do not be afraid to ask for help.")
+    puts 'The Master says:'
+    puts cyan('  You have not yet reached enlightenment.')
+    if (recents = progress.last(5)) && recents.size == 5 && recents.uniq.size == 1
+      puts cyan('  I sense frustration. Do not be afraid to ask for help.')
     elsif progress.last(2).size == 2 && progress.last(2).uniq.size == 1
-      puts cyan("  Do not lose hope.")
+      puts cyan('  Do not lose hope.')
     elsif progress.last.to_i > 0
       puts cyan("  You are progressing. Excellent. #{progress.last} completed.")
     end
@@ -87,10 +87,10 @@ class KoansFormatter < RSpec::Core::Formatters::BaseTextFormatter
 
   def guide_through_error
     puts
-    puts "The answers you seek..."
+    puts 'The answers you seek...'
     puts red(@failure.message)
     puts
-    puts "Please meditate on the following code:"
+    puts 'Please meditate on the following code:'
     if assert_failed?
       puts embolden_first_line_only(indent(find_interesting_lines(@failure.backtrace)))
     else
@@ -101,21 +101,21 @@ class KoansFormatter < RSpec::Core::Formatters::BaseTextFormatter
 
   def a_zenlike_statement
     if !failed?
-      zen_statement = "Mountains are again merely mountains"
+      zen_statement = 'Mountains are again merely mountains'
     else
       zen_statement = case (@passed_count % 10)
-                        when 0
-                          "mountains are merely mountains"
-                        when 1, 2
-                          "learn the rules so you know how to break them properly"
-                        when 3, 4
-                          "remember that silence is sometimes the best answer"
-                        when 5, 6
-                          "sleep is the best meditation"
-                        when 7, 8
-                          "when you lose, don't lose the lesson"
-                        else
-                          "things are not what they appear to be: nor are they otherwise"
+                      when 0
+                        'mountains are merely mountains'
+                      when 1, 2
+                        'learn the rules so you know how to break them properly'
+                      when 3, 4
+                        'remember that silence is sometimes the best answer'
+                      when 5, 6
+                        'sleep is the best meditation'
+                      when 7, 8
+                        "when you lose, don't lose the lesson"
+                      else
+                        'things are not what they appear to be: nor are they otherwise'
                       end
     end
     puts green(zen_statement)
@@ -123,14 +123,14 @@ class KoansFormatter < RSpec::Core::Formatters::BaseTextFormatter
 
   def show_progress
     bar_width = 50
-    scale = bar_width.to_f/@example_count
-    print green("your path thus far [")
-    happy_steps = (@passed_count*scale).to_i
+    scale = bar_width.to_f / @example_count
+    print green('your path thus far [')
+    happy_steps = (@passed_count * scale).to_i
     happy_steps = 1 if happy_steps == 0 && @passed_count > 0
-    print green('.'*happy_steps)
+    print green('.' * happy_steps)
     if failed?
       print red('X')
-      print cyan('_'*(bar_width-1-happy_steps))
+      print cyan('_' * (bar_width - 1 - happy_steps))
     end
     print green(']')
     print " #{@passed_count}/#{@example_count}"
@@ -139,14 +139,14 @@ class KoansFormatter < RSpec::Core::Formatters::BaseTextFormatter
 
   def embolden_first_line_only(text)
     first_line = true
-    text.collect { |t|
+    text.collect do |t|
       if first_line
         first_line = false
         red(t)
       else
         cyan(t)
       end
-    }
+    end
   end
 
   def indent(text)
@@ -155,13 +155,13 @@ class KoansFormatter < RSpec::Core::Formatters::BaseTextFormatter
   end
 
   def find_interesting_lines(backtrace)
-    backtrace.reject { |line|
+    backtrace.reject do |line|
       line =~ /rspec-expectations|rspec-core|bin/
-    }
+    end
   end
 
   def end_screen
-    "JRuby 1.9.x Koans"
+    'JRuby 1.9.x Koans'
     ruby_version = "(in #{'J' if defined?(JRUBY_VERSION)}Ruby #{defined?(JRUBY_VERSION) ? JRUBY_VERSION : RUBY_VERSION})"
     ruby_version = ruby_version.side_padding(54)
     completed = <<-ENDTEXT
@@ -181,7 +181,7 @@ class KoansFormatter < RSpec::Core::Formatters::BaseTextFormatter
  :::::::::::,                                                     ,::::::::::::
 :::::::::::::                                                     ,::::::::::::
 ::::::::::::                      Ruby Koans                       ::::::::::::,
-::::::::::::#{                  ruby_version                     },::::::::::::,
+::::::::::::#{ruby_version},::::::::::::,
 :::::::::::,                                                      , ::::::::::::
 ,:::::::::::::,                brought to you by                 ,,::::::::::::,
 ::::::::::::::                                                    ,::::::::::::
@@ -223,21 +223,19 @@ class KoansFormatter < RSpec::Core::Formatters::BaseTextFormatter
   def magenta(text)
     wrap(text, :magenta)
   end
-
 end
 
 class String
   def side_padding(width)
-    extra = width - self.size
+    extra = width - size
     if width < 0
       self
     else
       left_padding = extra / 2
-      right_padding = (extra+1)/2
-      (" " * left_padding) + self + (" " *right_padding)
+      right_padding = (extra + 1) / 2
+      (' ' * left_padding) + self + (' ' * right_padding)
     end
   end
 end
 
 RSpec::Core::Formatters.register KoansFormatter, :example_passed, :example_failed, :start_dump
-

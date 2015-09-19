@@ -1,7 +1,6 @@
 require 'spec_helper'
 
-describe "Sandwich Code" do
-
+describe 'Sandwich Code' do
   def count_lines(file_name)
     file = open(file_name)
     count = 0
@@ -13,8 +12,8 @@ describe "Sandwich Code" do
     file.close if file
   end
 
-  it "should demonstrate counting_lines" do
-    count_lines("example_file.txt").should eql __
+  it 'should demonstrate counting_lines' do
+    count_lines('example_file.txt').should eql __
   end
 
   # ------------------------------------------------------------------
@@ -28,8 +27,8 @@ describe "Sandwich Code" do
     file.close if file
   end
 
-  it "should demonstrate finding_lines" do
-    find_line("example_file.txt").should eql __
+  it 'should demonstrate finding_lines' do
+    find_line('example_file.txt').should eql __
   end
 
   # ------------------------------------------------------------------
@@ -73,8 +72,8 @@ describe "Sandwich Code" do
     end
   end
 
-  it "should demonstrate counting_lines2" do
-    count_lines2("example_file.txt").should eql __
+  it 'should demonstrate counting_lines2' do
+    count_lines2('example_file.txt').should eql __
   end
 
   # ------------------------------------------------------------------
@@ -83,8 +82,8 @@ describe "Sandwich Code" do
     # Rewrite find_line using the file_sandwich library function.
   end
 
-  it "should demonstrate finding_lines2" do
-    find_line2("example_file.txt").should eql __
+  it 'should demonstrate finding_lines2' do
+    find_line2('example_file.txt').should eql __
   end
 
   # ------------------------------------------------------------------
@@ -99,7 +98,7 @@ describe "Sandwich Code" do
     end
   end
 
-  it "should demonstrate open_handles_the_file_sandwich_when_given_a_block" do
-    count_lines3("example_file.txt").should eql __
+  it 'should demonstrate open_handles_the_file_sandwich_when_given_a_block' do
+    count_lines3('example_file.txt').should eql __
   end
 end
